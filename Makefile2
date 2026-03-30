@@ -1,0 +1,23 @@
+# ============================================================
+#  Makefile - Flappy Bird (raylib + Linux)
+#  Utilizare:
+#    make        -> compileaza
+#    make run    -> compileaza si porneste jocul
+#    make clean  -> sterge fisierele generate
+# ============================================================
+
+CC      = gcc
+TARGET  = flappy
+SRC     = flappy_bird.c
+LIBS    = -lraylib -lm
+
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+	$(CC) $(SRC) -o $(TARGET) $(LIBS)
+
+run: $(TARGET)
+	./$(TARGET)
+
+clean:
+	rm -f $(TARGET) highscore.txt
