@@ -1,0 +1,11 @@
+CC      = gcc
+CFLAGS  = -Wall -Wextra -O2 -std=c99
+LIBS    = -lraylib -lm -lX11 -lXrandr -lXinerama -lXi -lXext -lXcursor -lpthread -ldl -lrt
+TARGET  = flappy_bird
+SRC     = main.c
+
+all: \n
+\: \n	\ \ \ -o \ \n
+run: \n	./\n
+clean:
+	rm -f \n
