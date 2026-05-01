@@ -1,0 +1,12 @@
+config.h
+types.h
+game.h
+  game.c
+graphics.h
+  graphics.c
+ui.h
+  ui.c
+score.h
+  score.c
+main.c 
+makefile
