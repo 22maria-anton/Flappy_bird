@@ -1,29 +1,33 @@
-# Compiler
+# Compiler și flags
 CC = gcc
+CFLAGS = -Wall -Wextra -std=c99
+LIBS = -lraylib -lm
 
-# Output binary
-TARGET = game
+# Fișiere sursă și obiecte
+SOURCES = main.c game.c graphics.c ui.c score.c
+OBJECTS = $(SOURCES:.c=.o)
+EXECUTABLE = flappy_bird
 
-# Source files
-SRC = main.c
+# Target implicit
+all: $(EXECUTABLE)
 
-# Compiler flags
-CFLAGS = -Wall -Wextra -O2
+# Link
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 
-# Raylib flags (adjust paths if raylib is installed elsewhere)
-RAYLIB_FLAGS = -lraylib -lm -lpthread -ldl -lrt -lX11
+# Compilare
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# ─── Targets ────────────────────────────────────────────────────────────────
-
-all: $(TARGET)
-
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET) $(RAYLIB_FLAGS)
-
-run: all
-	./$(TARGET)
-
+# Curățare
 clean:
-	rm -f $(TARGET)
+	rm -f $(OBJECTS) $(EXECUTABLE)
 
-.PHONY: all run clean
+# Rebuild
+rebuild: clean all
+
+# Rulare
+run: $(EXECUTABLE)
+	./$(EXECUTABLE)
+
+.PHONY: all clean rebuild run
